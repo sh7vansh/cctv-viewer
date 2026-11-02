@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+  <title>CCTV Viewer</title>
+  <g fill="#241f31">
+    <path d="M3 2h10a2 2 0 0 1 2 2v1H1V4a2 2 0 0 1 2-2z"/>
+    <path fill-rule="evenodd" d="M2 6h12v3a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2zm8 .5a1.75 1.75 0 1 0 0 3.5 1.75 1.75 0 0 0 0-3.5zM4 7a.75.75 0 1 0 0 1.5A.75.75 0 0 0 4 7z"/>
+    <path d="M6 11h2l-1 2H5zM4 13h6a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z"/>
+  </g>
+</svg>

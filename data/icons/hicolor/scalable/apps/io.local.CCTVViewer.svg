@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
+  <title>CCTV Viewer</title>
+  <desc>A bright blue, watchful security camera with an oversized glass lens and an offset articulated stand.</desc>
+  <defs>
+    <radialGradient id="glass" cx=".32" cy=".24" r=".9">
+      <stop offset="0" stop-color="#334b69"/>
+      <stop offset=".65" stop-color="#1b2b44"/>
+      <stop offset="1" stop-color="#101b30"/>
+    </radialGradient>
+    <linearGradient id="rim" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#c0dcf4"/>
+    </linearGradient>
+  </defs>
+  <!-- Offset mount: a small lean makes the silhouette feel alert. -->
+  <path fill="#1a5fb4" d="M54 78h18l-12 26H44z"/>
+  <path fill="#62a0ea" d="M54 78h10l-12 24h-8z"/>
+  <rect x="32" y="100" width="56" height="12" rx="6" fill="#1a5fb4"/>
+  <rect x="32" y="96" width="56" height="12" rx="6" fill="#3584e4"/>
+  <!-- The darker lower profile gives the housing GNOME's shallow depth. -->
+  <rect x="18" y="38" width="94" height="52" rx="18" fill="#1a5fb4"/>
+  <rect x="18" y="32" width="94" height="52" rx="18" fill="#3584e4"/>
+  <path d="M18 50v16c0 10 8 18 18 18h10V50z" fill="#62a0ea"/>
+  <!-- A little amber status light, rather than an unrelated mascot detail. -->
+  <circle cx="34" cy="64" r="5" fill="#1c71d8"/>
+  <circle cx="34" cy="62" r="4" fill="#ffbe6f"/>
+  <!-- Lens seat and broad, readable ceramic rim. -->
+  <circle cx="82" cy="62" r="28" fill="#1a5fb4"/>
+  <circle cx="82" cy="58" r="26" fill="url(#rim)"/>
+  <circle cx="82" cy="58" r="21" fill="#1c71d8"/>
+  <circle cx="82" cy="58" r="18" fill="url(#glass)"/>
+  <circle cx="82" cy="59" r="10" fill="#0b1428"/>
+  <path d="M68 60a14 14 0 0 0 25 7 17 17 0 0 1-25-7" fill="#26a269"/>
+  <ellipse cx="76" cy="51" rx="7" ry="4" transform="rotate(-28 76 51)" fill="#c0f5f0"/>
+  <circle cx="90" cy="67" r="3" fill="#57e389"/>
+  <!-- The forward hood reads like a raised eyebrow without becoming a face. -->
+  <path d="M24 26h76c9 0 16 7 16 16v6H12v-6c0-9 5-16 12-16z" fill="#62a0ea"/>
+  <path d="M24 22h76c9 0 16 7 16 16v6H12v-6c0-9 5-16 12-16z" fill="#99c1f1"/>
+  <path d="M24 22h76c6 0 11 3 14 8H16c2-5 4-8 8-8z" fill="#c0dcff"/>
+</svg>
