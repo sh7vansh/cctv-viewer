@@ -79,6 +79,20 @@ again after moving it; paths containing spaces are supported.
 
 ## Flatpak
 
+Install from the signed [GitHub Pages repository](https://sh7vansh.github.io/cctv-viewer/):
+
+```sh
+flatpak install --user https://sh7vansh.github.io/cctv-viewer/cctv-viewer.flatpakref
+flatpak run io.local.CCTVViewer
+```
+
+You can also [open the installer](https://sh7vansh.github.io/cctv-viewer/cctv-viewer.flatpakref)
+in your software manager. Updates are delivered through the same repository
+and verified with its signing key; use your software manager or `flatpak update`.
+The published build currently targets x86_64 Linux desktops.
+
+### Build locally
+
 Build an installable bundle using the GNOME 51 runtime and SDK. Install the
 build tools once (or use your distribution's `flatpak-builder`):
 
@@ -98,7 +112,8 @@ flatpak run io.local.CCTVViewer
 
 The bundle includes the app, icons, launcher, and metadata; Flatpak installs the
 GNOME runtime from Flathub as needed. No host Python packages are required to run
-the installed app. This is a locally built bundle, not a Flathub listing.
+the installed app. Maintainers can follow the [signed publishing guide](packaging/README.md)
+to update the hosted repository.
 
 Sandbox permissions cover the network for RTSP/discovery, graphics devices,
 Wayland or fallback X11, desktop audio, and
@@ -231,6 +246,7 @@ tests/test_discovery.py   Sandbox interface-discovery tests
 tools/benchmark.py        Live playback performance measurements
 tools/install.py          Launcher and icon installation
 tools/build_flatpak.py    Flatpak build and bundle export
+tools/publish_flatpak.py  Signed update repository and Pages files
 io.local.CCTVViewer.json  Flatpak manifest
 packaging/               Flatpak launcher and AppStream metadata
 ```
