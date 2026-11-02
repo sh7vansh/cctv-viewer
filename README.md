@@ -219,13 +219,19 @@ The project includes no recorder credentials or camera images.
 python3 viewer.py --demo --smoke-test
 python3 tests/verify_ui.py
 python3 tests/verify_benchmark.py
+python3 tests/verify_logins.py
 python3 tests/test_discovery.py
+python3 tests/test_install.py
 ```
 
-These checks need a working graphical desktop session. The demo uses test
-patterns. UI checks exercise camera navigation, snapshots, dialogs, adaptive
+UI, saved-login, and benchmark checks need a working graphical desktop session.
+The demo uses test patterns. UI checks exercise camera navigation, snapshots, dialogs, adaptive
 layout, error recovery, audio selection, and disconnect using temporary settings.
 The benchmark regression check verifies startup does not write or delete credentials.
+Saved-login checks use a simulated Secret Service to verify cancellation of
+pending automatic connections. Discovery and launcher checks run without a
+graphical session; launcher checks install and launch a stub from temporary
+checkouts with special characters in their paths.
 No camera or real credentials are required for these checks.
 
 Regenerate the public screenshots with temporary settings and test-pattern feeds:
@@ -264,7 +270,9 @@ discovery.py              Local RTSP discovery
 data/icons/               Full-color and symbolic SVG sources
 tests/verify_ui.py        GTK and video integration checks
 tests/verify_benchmark.py Credential persistence regression check
+tests/verify_logins.py    Saved-login cancellation regression checks
 tests/test_discovery.py   Sandbox interface-discovery tests
+tests/test_install.py     Desktop launcher installation and path checks
 tools/benchmark.py        Live playback performance measurements
 tools/install.py          Launcher and icon installation
 tools/build_flatpak.py    Flatpak build and bundle export

@@ -17,10 +17,16 @@ def _interface_addresses():
     routes = []
     for line in Path("/proc/net/route").read_text().splitlines()[1:]:
         fields = line.split()
-        if len(fields) >= 8 and fields[1] == "00000000" and int(fields[3], 16) & 1:
-            routes.append((int(fields[6]), fields[0]))
+        if len(fields) >= 8 and int(fields[3], 16) & 1:
+            default = fields[1] == "00000000"
+            if default or fields[2] == "00000000":
+                routes.append((not default, int(fields[6]), fields[0]))
     with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as connection:
-        for _metric, device in sorted(routes):
+        seen = set()
+        for _not_default, _metric, device in sorted(routes):
+            if device in seen:
+                continue
+            seen.add(device)
             request = struct.pack("256s", device.encode()[:15])
             try:
                 address = socket.inet_ntoa(fcntl.ioctl(connection.fileno(), 0x8915, request)[20:24])
@@ -40,8 +46,10 @@ def home_network():
         return json.loads(subprocess.check_output(["ip", "-j", "-4", *args], timeout=3))
 
     if shutil.which("ip"):
-        routes = ip_json("route", "show", "default")
-        addresses = [address for route in sorted(routes, key=lambda r: r.get("metric", 0))
+        routes = [route for route in ip_json("route", "show")
+                  if "dev" in route and (route.get("dst") == "default" or route.get("scope") == "link")]
+        routes.sort(key=lambda route: (route.get("dst") != "default", route.get("metric", 0)))
+        addresses = [address for route in routes
                      for interface in ip_json("addr", "show", "dev", route["dev"])
                      for address in interface.get("addr_info", [])]
     else:

@@ -16,7 +16,8 @@ def exec_argument(value):
     value = str(value).replace("%", "%%")
     for character in ("\\", '"', "`", "$"):
         value = value.replace(character, "\\" + character)
-    return '"' + value + '"'
+    # The desktop-file parser unescapes the value before parsing Exec arguments.
+    return ('"' + value + '"').replace("\\", "\\\\")
 
 
 def main():

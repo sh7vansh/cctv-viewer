@@ -260,6 +260,7 @@ class Viewer(Adw.Application):
         self.discovery_cancel = None
         self.closing = False
         self.changing_audio = False
+        self.login_generation = 0
 
     def add_action(self, name, callback, parameter=None, shortcuts=()):
         action = Gio.SimpleAction.new(name, GLib.VariantType.new(parameter) if parameter else None)
@@ -631,6 +632,7 @@ class Viewer(Adw.Application):
         camera.start(self.settings, self.password, self.demo)
 
     def disconnect(self):
+        self.login_generation += 1
         for camera in self.cameras:
             camera.stop()
         self.password = ""
@@ -681,9 +683,12 @@ class Viewer(Adw.Application):
             self.toast("Could not save preferences. Changes apply for this session.")
 
     def restore_login(self):
+        self.login_generation += 1
+        generation = self.login_generation
         attributes = self.credentials.attributes(self.settings)
         def restored(password, error):
-            if self.closing or attributes != self.credentials.attributes(self.settings) or self.connected:
+            if (generation != self.login_generation or self.closing or not self.settings["remember"]
+                    or attributes != self.credentials.attributes(self.settings) or self.connected):
                 return
             if error:
                 self.toast("Could not access the saved login. Connect manually.")
@@ -707,6 +712,7 @@ class Viewer(Adw.Application):
         if not self.persist_credentials:
             self.toast("Saved logins cannot be changed during a benchmark.")
             return
+        self.login_generation += 1
         def cleared(success):
             if self.closing:
                 return
