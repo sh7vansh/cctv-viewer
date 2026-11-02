@@ -56,8 +56,10 @@ def main():
     repo.open(None)
     keyring = Gio.File.new_for_path(str(public / "signing-key.gpg"))
     _, refs = repo.list_refs(None, None)
+    appstream_commits = set()
     for ref, checksum in refs.items():
         if ref.startswith(("appstream/", "appstream2/")):
+            appstream_commits.add(checksum)
             try:
                 verified = repo.verify_commit_ext(checksum, None, keyring, None)
                 signed = verified.count_valid() > 0
@@ -65,6 +67,18 @@ def main():
                 signed = False
             if not signed:
                 repo.sign_commit(checksum, options.signing_key, str(key_home), None)
+    # Deltas embed detached signatures. Existing deltas must be regenerated too;
+    # Flatpak's normal delta generation skips files that already exist.
+    _, deltas = repo.list_static_delta_names(None)
+    for delta in deltas:
+        source, separator, target = delta.rpartition("-")
+        if separator and target in appstream_commits:
+            repo.static_delta_generate(OSTree.StaticDeltaGenerateOpt.MAJOR,
+                                       source, target,
+                                       GLib.Variant("a{sv}", {}), GLib.Variant("a{sv}", {}), None)
+    for checksum in appstream_commits:
+        repo.static_delta_generate(OSTree.StaticDeltaGenerateOpt.MAJOR, None, checksum,
+                                   GLib.Variant("a{sv}", {}), GLib.Variant("a{sv}", {}), None)
     run("flatpak", "build-update-repo", *signing, "--no-update-appstream",
         "--generate-static-deltas", repository)
     shutil.copytree(repository, public / "repo", dirs_exist_ok=True,

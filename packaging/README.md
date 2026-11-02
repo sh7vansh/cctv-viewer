@@ -59,7 +59,9 @@ the signed bundle and artifact checksums in `dist/`. It preserves the Pages
 checkout's `.git` directory and does not push automatically.
 Publishing requires Python bindings for OSTree. The publisher explicitly signs
 both AppStream branches, including reused commits, before updating the summary.
-The verification check refreshes AppStream using an isolated Flatpak client with
+It regenerates AppStream deltas so their embedded signatures match the commits.
+The verification check serves the local repository over HTTP and refreshes
+AppStream using an isolated Flatpak client with
 GPG verification enabled; it leaves installed apps and remotes untouched.
 
 GitHub Pages deploys the branch after the push. Verify the public URL before
