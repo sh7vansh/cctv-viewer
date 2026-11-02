@@ -58,6 +58,10 @@ def main():
         "RuntimeRepo=https://dl.flathub.org/repo/flathub.flatpakrepo\n" + common)
     shutil.copy2(ROOT / f"data/icons/hicolor/scalable/apps/{APP_ID}.svg", public / "icon.svg")
     shutil.copy2(ROOT / "packaging/site/index.html", public / "index.html")
+    screenshots = public / "screenshots"
+    screenshots.mkdir(exist_ok=True)
+    for name in ("overview.png", "focused.png", "preferences.png"):
+        shutil.copy2(ROOT / "data/screenshots" / name, screenshots / name)
     (public / ".nojekyll").touch()
     architecture = subprocess.check_output(["flatpak", "--default-arch"], text=True).strip()
     dist = ROOT / "dist"

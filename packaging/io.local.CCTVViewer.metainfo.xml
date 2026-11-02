@@ -26,6 +26,20 @@
   <url type="vcs-browser">https://github.com/sh7vansh/cctv-viewer</url>
   <provides><binary>cctv-viewer</binary></provides>
   <content_rating type="oars-1.1"/>
+  <screenshots>
+    <screenshot type="default">
+      <image type="source" width="1280" height="820">https://sh7vansh.github.io/cctv-viewer/screenshots/overview.png</image>
+      <caption>Four-camera grid in light appearance with demonstration feeds</caption>
+    </screenshot>
+    <screenshot>
+      <image type="source" width="1280" height="820">https://sh7vansh.github.io/cctv-viewer/screenshots/focused.png</image>
+      <caption>Focused camera in dark appearance</caption>
+    </screenshot>
+    <screenshot>
+      <image type="source" width="1280" height="820">https://sh7vansh.github.io/cctv-viewer/screenshots/preferences.png</image>
+      <caption>Video quality, appearance, and camera naming preferences</caption>
+    </screenshot>
+  </screenshots>
   <releases>
     <release version="0.2.0" date="2026-11-02">
       <description><p>Initial Flatpak package with live video, audio, snapshots, and discovery.</p></description>

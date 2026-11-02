@@ -19,6 +19,22 @@ models have not been verified.
 - Discovery of RTSP services on the active home network.
 - Original full-color and symbolic GNOME-style app icons.
 
+## Screenshots
+
+Actual app captures with synthetic demo feeds and temporary settings; no private
+camera footage or credentials are shown.
+
+![Four-camera grid and sidebar in light appearance](data/screenshots/overview.png)
+
+<details>
+<summary>Focused camera and preferences</summary>
+
+![Focused camera in dark appearance](data/screenshots/focused.png)
+
+![Video quality, appearance, and camera naming preferences](data/screenshots/preferences.png)
+
+</details>
+
 ## Requirements
 
 | Component | Supported minimum | Version tested |
@@ -212,6 +228,12 @@ layout, error recovery, audio selection, and disconnect using temporary settings
 The benchmark regression check verifies startup does not write or delete credentials.
 No camera or real credentials are required for these checks.
 
+Regenerate the public screenshots with temporary settings and test-pattern feeds:
+
+```sh
+python3 tools/capture_screenshots.py
+```
+
 For a live playback check, use the configured recorder and a saved login or
 provide `CCTV_PASSWORD` in the environment:
 
@@ -247,6 +269,7 @@ tools/benchmark.py        Live playback performance measurements
 tools/install.py          Launcher and icon installation
 tools/build_flatpak.py    Flatpak build and bundle export
 tools/publish_flatpak.py  Signed update repository and Pages files
+tools/capture_screenshots.py Reproducible demo-only application captures
 io.local.CCTVViewer.json  Flatpak manifest
 packaging/               Flatpak launcher and AppStream metadata
 ```
