@@ -902,7 +902,7 @@ class Viewer(Adw.Application):
 
     def about(self):
         dialog = Adw.AboutDialog(application_name="CCTV Viewer", application_icon="io.local.CCTVViewer",
-                                  version="0.2.0", comments="A native viewer for your home recorder.",
+                                  version="0.2.1", comments="A native viewer for your home recorder.",
                                   license_type=Gtk.License.MIT_X11)
         dialog.present(self.window)
 

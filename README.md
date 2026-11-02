@@ -118,11 +118,11 @@ flatpak install --user flathub org.flatpak.Builder org.gnome.Sdk//51
 python3 tools/build_flatpak.py
 ```
 
-The output is `dist/cctv-viewer-0.2.0-ARCH.flatpak`, with a `.flatpak.sha256`
+The output is `dist/cctv-viewer-0.2.1-ARCH.flatpak`, with a `.flatpak.sha256`
 checksum alongside it. ARCH is your build machine's architecture. Install and run it with:
 
 ```sh
-flatpak install --user dist/cctv-viewer-0.2.0-x86_64.flatpak
+flatpak install --user dist/cctv-viewer-0.2.1-x86_64.flatpak
 flatpak run io.local.CCTVViewer
 ```
 

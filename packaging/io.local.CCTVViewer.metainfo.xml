@@ -41,6 +41,15 @@
     </screenshot>
   </screenshots>
   <releases>
+    <release version="0.2.1" date="2026-11-02">
+      <description>
+        <ul>
+          <li>Respect Disconnect and Forget Saved Login while a saved login is loading.</li>
+          <li>Discover cameras on local networks without a default gateway.</li>
+          <li>Fix desktop launchers for checkout paths containing special characters.</li>
+        </ul>
+      </description>
+    </release>
     <release version="0.2.0" date="2026-11-02">
       <description><p>Initial Flatpak package with live video, audio, snapshots, and discovery.</p></description>
     </release>

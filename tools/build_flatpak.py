@@ -22,7 +22,7 @@ def main():
     subprocess.run(builder + ["--force-clean", "--user", "--install-deps-from=flathub",
                              "--repo=flatpak-repo", "build-flatpak", f"{APP_ID}.json"], cwd=ROOT, check=True)
     architecture = subprocess.check_output(["flatpak", "--default-arch"], text=True).strip()
-    output = ROOT / "dist" / f"cctv-viewer-0.2.0-{architecture}.flatpak"
+    output = ROOT / "dist" / f"cctv-viewer-0.2.1-{architecture}.flatpak"
     output.parent.mkdir(exist_ok=True)
     subprocess.run(["flatpak", "build-bundle", "--runtime-repo=https://dl.flathub.org/repo/flathub.flatpakrepo",
                     "flatpak-repo", str(output), APP_ID, "stable"], cwd=ROOT, check=True)

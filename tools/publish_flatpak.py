@@ -66,7 +66,7 @@ def main():
     architecture = subprocess.check_output(["flatpak", "--default-arch"], text=True).strip()
     dist = ROOT / "dist"
     dist.mkdir(exist_ok=True)
-    bundle = dist / f"cctv-viewer-0.2.0-{architecture}.flatpak"
+    bundle = dist / f"cctv-viewer-0.2.1-{architecture}.flatpak"
     run("flatpak", "build-bundle", f"--repo-url={HOMEPAGE}repo/",
         f"--gpg-keys={public / 'signing-key.gpg'}",
         "--runtime-repo=https://dl.flathub.org/repo/flathub.flatpakrepo",
