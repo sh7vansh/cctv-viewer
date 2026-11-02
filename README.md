@@ -273,6 +273,7 @@ tests/verify_benchmark.py Credential persistence regression check
 tests/verify_logins.py    Saved-login cancellation regression checks
 tests/test_discovery.py   Sandbox interface-discovery tests
 tests/test_install.py     Desktop launcher installation and path checks
+tests/verify_flatpak.py   Signed AppStream refresh in an isolated Flatpak client
 tools/benchmark.py        Live playback performance measurements
 tools/install.py          Launcher and icon installation
 tools/build_flatpak.py    Flatpak build and bundle export

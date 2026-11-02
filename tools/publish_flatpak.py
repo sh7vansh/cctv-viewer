@@ -8,6 +8,11 @@ from pathlib import Path
 import shutil
 import subprocess
 
+import gi
+
+gi.require_version("OSTree", "1.0")
+from gi.repository import Gio, GLib, OSTree
+
 
 ROOT = Path(__file__).resolve().parents[1]
 APP_ID = "io.local.CCTVViewer"
@@ -44,6 +49,23 @@ def main():
     run("flatpak", "build-sign", *signing, repository, APP_ID, "stable")
     run("flatpak", "build-update-repo", *signing, f"--gpg-import={public / 'signing-key.gpg'}",
         "--title=CCTV Viewer", "--default-branch=stable", f"--homepage={HOMEPAGE}",
+        "--no-update-summary", repository)
+    # Existing AppStream commits can be reused without being signed by Flatpak.
+    # Sign them explicitly before generating deltas and the signed summary.
+    repo = OSTree.Repo.new(Gio.File.new_for_path(str(repository)))
+    repo.open(None)
+    keyring = Gio.File.new_for_path(str(public / "signing-key.gpg"))
+    _, refs = repo.list_refs(None, None)
+    for ref, checksum in refs.items():
+        if ref.startswith(("appstream/", "appstream2/")):
+            try:
+                verified = repo.verify_commit_ext(checksum, None, keyring, None)
+                signed = verified.count_valid() > 0
+            except GLib.Error:
+                signed = False
+            if not signed:
+                repo.sign_commit(checksum, options.signing_key, str(key_home), None)
+    run("flatpak", "build-update-repo", *signing, "--no-update-appstream",
         "--generate-static-deltas", repository)
     shutil.copytree(repository, public / "repo", dirs_exist_ok=True,
                     ignore=shutil.ignore_patterns("tmp", "lock", ".lock"))

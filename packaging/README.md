@@ -47,6 +47,7 @@ python3 tools/build_flatpak.py
 python3 tools/publish_flatpak.py \
   --signing-key 4209C4FE6B7E9A8EA0B7CB10B85985F08B06A064 \
   --gpg-homedir "$HOME/.local/share/cctv-viewer-release-keys"
+python3 tests/verify_flatpak.py
 git -C build/public add .
 git -C build/public commit -m "Update Flatpak repository"
 git -C build/public push origin gh-pages
@@ -56,10 +57,15 @@ The publisher generates static deltas, signed metadata, `.flatpakref` and
 `.flatpakrepo` installers, a public key, and the landing page. It also refreshes
 the signed bundle and artifact checksums in `dist/`. It preserves the Pages
 checkout's `.git` directory and does not push automatically.
+Publishing requires Python bindings for OSTree. The publisher explicitly signs
+both AppStream branches, including reused commits, before updating the summary.
+The verification check refreshes AppStream using an isolated Flatpak client with
+GPG verification enabled; it leaves installed apps and remotes untouched.
 
 GitHub Pages deploys the branch after the push. Verify the public URL before
 announcing an update:
 
 ```sh
 flatpak remote-info --user cctv-viewer io.local.CCTVViewer//stable
+python3 tests/verify_flatpak.py --url https://sh7vansh.github.io/cctv-viewer/repo/
 ```
