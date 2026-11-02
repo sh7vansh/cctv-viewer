@@ -1,0 +1,8 @@
+[Flatpak Repo]
+Title=CCTV Viewer
+Comment=Live video from your home recorder
+Description=A GTK4 and libadwaita viewer for CP PLUS recorders.
+Url=https://sh7vansh.github.io/cctv-viewer/repo/
+Homepage=https://sh7vansh.github.io/cctv-viewer/
+Icon=https://sh7vansh.github.io/cctv-viewer/icon.svg
+GPGKey=mDMEaugzOBYJKwYBBAHaRw8BAQdACk0fmBXp8dVD1NQf9vsjFeWtz6/D8I06LdzGUU1v/q20HENDVFYgVmlld2VyIEZsYXRwYWsgUmVsZWFzZXOIkgQTFgoAOxYhBEIJxP5rfpqOoLfLELhZhfCLBqBkBQJq6DM4AhsDBQsJCAcCAiICBhUKCQgLAgQWAgMBAh4HAheAAAoJELhZhfCLBqBkWWwA/jX1pIR0KcY0CGVCfPPZS02wAqK8WsXNz5Fga4Dv5xa7APjrAJjIz6AhT/TRfY64agjJjhB/bMZotNkzQkMjT3cG

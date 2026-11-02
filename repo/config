@@ -1,0 +1,10 @@
+[core]
+repo_version=1
+mode=archive-z2
+indexed-deltas=true
+
+[flatpak]
+title=CCTV Viewer
+homepage=https://sh7vansh.github.io/cctv-viewer/
+default-branch=stable
+gpg-keys=mDMEaugzOBYJKwYBBAHaRw8BAQdACk0fmBXp8dVD1NQf9vsjFeWtz6/D8I06LdzGUU1v/q20HENDVFYgVmlld2VyIEZsYXRwYWsgUmVsZWFzZXOIkgQTFgoAOxYhBEIJxP5rfpqOoLfLELhZhfCLBqBkBQJq6DM4AhsDBQsJCAcCAiICBhUKCQgLAgQWAgMBAh4HAheAAAoJELhZhfCLBqBkWWwA/jX1pIR0KcY0CGVCfPPZS02wAqK8WsXNz5Fga4Dv5xa7APjrAJjIz6AhT/TRfY64agjJjhB/bMZotNkzQkMjT3cG
