@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>io.local.CCTVViewer</id>
+  <name>CCTV Viewer</name>
+  <summary>Watch four cameras from your home recorder</summary>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>MIT</project_license>
+  <developer id="io.github.sh7vansh">
+    <name>CCTV Viewer contributors</name>
+  </developer>
+  <description>
+    <p>Watch four live camera channels from a CP PLUS recorder in an adaptive
+    GNOME interface. Focus on one camera or keep all four visible in a grid.</p>
+    <ul>
+      <li>Watch all four cameras in a grid or focus on one camera.</li>
+      <li>Listen to camera audio and save snapshots.</li>
+      <li>Discover RTSP services on your home network.</li>
+      <li>Optionally save your login in the desktop keyring.</li>
+    </ul>
+    <p>Uses the CP PLUS realmonitor RTSP path. Other recorder protocols,
+    archive playback, and InstaOn P2P connections are not supported.</p>
+  </description>
+  <launchable type="desktop-id">io.local.CCTVViewer.desktop</launchable>
+  <url type="homepage">https://github.com/sh7vansh/cctv-viewer</url>
+  <url type="bugtracker">https://github.com/sh7vansh/cctv-viewer/issues</url>
+  <url type="vcs-browser">https://github.com/sh7vansh/cctv-viewer</url>
+  <provides><binary>cctv-viewer</binary></provides>
+  <content_rating type="oars-1.1"/>
+  <releases>
+    <release version="0.2.0" date="2026-11-02">
+      <description><p>Initial Flatpak package with live video, audio, snapshots, and discovery.</p></description>
+    </release>
+  </releases>
+</component>

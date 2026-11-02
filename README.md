@@ -52,7 +52,8 @@ sudo dnf install python3-gobject gtk4 libadwaita libsecret \
 
 Codec package availability can depend on your enabled repositories. Use your
 distribution's GTK/GStreamer packages; there is no `pip install` package yet.
-Local network discovery also requires the `ip` command from iproute2.
+Local network discovery uses iproute2 when available and Linux interface queries
+otherwise.
 
 ## Run
 
@@ -75,6 +76,48 @@ python3 tools/install.py
 The installer writes to your user application and icon directories and requires
 no administrator access. The checkout must remain in place. Run the installer
 again after moving it; paths containing spaces are supported.
+
+## Flatpak
+
+Build an installable bundle using the GNOME 51 runtime and SDK. Install the
+build tools once (or use your distribution's `flatpak-builder`):
+
+```sh
+flatpak remote-add --user --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+flatpak install --user flathub org.flatpak.Builder org.gnome.Sdk//51
+python3 tools/build_flatpak.py
+```
+
+The output is `dist/cctv-viewer-0.2.0-ARCH.flatpak`, with a `.flatpak.sha256`
+checksum alongside it. ARCH is your build machine's architecture. Install and run it with:
+
+```sh
+flatpak install --user dist/cctv-viewer-0.2.0-x86_64.flatpak
+flatpak run io.local.CCTVViewer
+```
+
+The bundle includes the app, icons, launcher, and metadata; Flatpak installs the
+GNOME runtime from Flathub as needed. No host Python packages are required to run
+the installed app. This is a locally built bundle, not a Flathub listing.
+
+Sandbox permissions cover the network for RTSP/discovery, graphics devices,
+Wayland or fallback X11, desktop audio, and
+the `Pictures/CCTV` subdirectory for snapshots. The package has no general home
+directory or host-command access. Saved logins use libsecret's sandbox backend
+and the desktop Secret portal, without direct access to the host keyring bus.
+Network discovery works without the host's
+`ip` command. See the [manifest](io.local.CCTVViewer.json) for exact permissions.
+
+Flatpak settings are separate from source-checkout settings, under
+`~/.var/app/io.local.CCTVViewer/config/cctv-viewer/settings.json`. Configure the
+recorder on first launch. The sandbox's encrypted credential store is separate
+from native keyring entries; enter your login once and enable Remember Login.
+
+To test an installed bundle without connecting to a recorder:
+
+```sh
+flatpak run io.local.CCTVViewer --demo --smoke-test
+```
 
 ## Recorder compatibility
 
@@ -145,6 +188,7 @@ The project includes no recorder credentials or camera images.
 python3 viewer.py --demo --smoke-test
 python3 tests/verify_ui.py
 python3 tests/verify_benchmark.py
+python3 tests/test_discovery.py
 ```
 
 These checks need a working graphical desktop session. The demo uses test
@@ -183,8 +227,12 @@ discovery.py              Local RTSP discovery
 data/icons/               Full-color and symbolic SVG sources
 tests/verify_ui.py        GTK and video integration checks
 tests/verify_benchmark.py Credential persistence regression check
+tests/test_discovery.py   Sandbox interface-discovery tests
 tools/benchmark.py        Live playback performance measurements
 tools/install.py          Launcher and icon installation
+tools/build_flatpak.py    Flatpak build and bundle export
+io.local.CCTVViewer.json  Flatpak manifest
+packaging/               Flatpak launcher and AppStream metadata
 ```
 
 ## License

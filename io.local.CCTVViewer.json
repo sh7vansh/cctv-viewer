@@ -1,0 +1,45 @@
+{
+  "app-id": "io.local.CCTVViewer",
+  "runtime": "org.gnome.Platform",
+  "runtime-version": "51",
+  "sdk": "org.gnome.Sdk",
+  "command": "cctv-viewer",
+  "branch": "stable",
+  "finish-args": [
+    "--share=network",
+    "--share=ipc",
+    "--socket=wayland",
+    "--socket=fallback-x11",
+    "--socket=pulseaudio",
+    "--device=dri",
+    "--filesystem=xdg-pictures/CCTV:create"
+  ],
+  "modules": [
+    {
+      "name": "cctv-viewer",
+      "buildsystem": "simple",
+      "build-commands": [
+        "install -Dm644 viewer.py /app/share/cctv-viewer/viewer.py",
+        "install -Dm644 credentials.py /app/share/cctv-viewer/credentials.py",
+        "install -Dm644 discovery.py /app/share/cctv-viewer/discovery.py",
+        "install -Dm755 cctv-viewer /app/bin/cctv-viewer",
+        "install -Dm644 io.local.CCTVViewer.desktop /app/share/applications/io.local.CCTVViewer.desktop",
+        "install -Dm644 io.local.CCTVViewer.metainfo.xml /app/share/metainfo/io.local.CCTVViewer.metainfo.xml",
+        "install -Dm644 io.local.CCTVViewer.svg /app/share/icons/hicolor/scalable/apps/io.local.CCTVViewer.svg",
+        "install -Dm644 io.local.CCTVViewer-symbolic.svg /app/share/icons/hicolor/symbolic/apps/io.local.CCTVViewer-symbolic.svg",
+        "install -Dm644 LICENSE /app/share/licenses/io.local.CCTVViewer/LICENSE"
+      ],
+      "sources": [
+        {"type": "file", "path": "viewer.py"},
+        {"type": "file", "path": "credentials.py"},
+        {"type": "file", "path": "discovery.py"},
+        {"type": "file", "path": "LICENSE"},
+        {"type": "file", "path": "packaging/cctv-viewer"},
+        {"type": "file", "path": "packaging/io.local.CCTVViewer.desktop"},
+        {"type": "file", "path": "packaging/io.local.CCTVViewer.metainfo.xml"},
+        {"type": "file", "path": "data/icons/hicolor/scalable/apps/io.local.CCTVViewer.svg"},
+        {"type": "file", "path": "data/icons/hicolor/symbolic/apps/io.local.CCTVViewer-symbolic.svg"}
+      ]
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=CCTV Viewer
+Comment=View cameras from your home recorder
+Exec=cctv-viewer
+Icon=io.local.CCTVViewer
+Terminal=false
+Categories=AudioVideo;Video;GTK;
+Keywords=CCTV;Camera;RTSP;Surveillance;
+StartupNotify=true

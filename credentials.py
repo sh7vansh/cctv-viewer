@@ -1,4 +1,4 @@
-"""Asynchronous account-scoped storage in the desktop Secret Service."""
+"""Asynchronous account-scoped password storage through libsecret."""
 
 import gi
 
