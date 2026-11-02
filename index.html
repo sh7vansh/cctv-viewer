@@ -7,7 +7,7 @@
 <style>
   :root { font-family: system-ui, sans-serif; color-scheme: light dark; }
   body { margin: 0; }
-  main { max-width: 620px; margin: 8vh auto; padding: 32px 24px; }
+  main { max-width: 960px; margin: 8vh auto; padding: 32px 24px; }
   h1 { margin-bottom: 12px; font-size: 2.2rem; }
   p { line-height: 1.65; }
   .install { display: inline-block; padding: 12px 22px; border-radius: 12px;
@@ -15,6 +15,11 @@
   .install:focus-visible { outline: 3px solid #62a0ea; outline-offset: 4px; }
   pre { padding: 16px; border: 1px solid #8886; border-radius: 12px; overflow-x: auto; }
   footer { margin-top: 32px; font-size: .9rem; }
+  .screenshots { display: grid; gap: 28px; margin: 36px 0; }
+  figure { margin: 0; }
+  figure img { display: block; width: 100%; height: auto; border: 1px solid #8886;
+    border-radius: 12px; box-sizing: border-box; }
+  figcaption { margin-top: 8px; font-size: .9rem; line-height: 1.5; }
 </style>
 <main>
   <img src="icon.svg" alt="A watchful blue security camera" width="128" height="128">
@@ -26,6 +31,28 @@
     Updates are verified using this repository’s signing key.</p>
   <pre>flatpak install --user https://sh7vansh.github.io/cctv-viewer/cctv-viewer.flatpakref</pre>
   <p>After installation, updates arrive through your software manager or <code>flatpak update</code>.</p>
+  <section aria-labelledby="screenshots">
+    <h2 id="screenshots">Screenshots</h2>
+    <p>Actual app windows with synthetic demo feeds. No private camera footage is shown.
+      Select an image to view it at full size.</p>
+    <div class="screenshots">
+      <figure>
+        <a href="screenshots/overview.png"><img src="screenshots/overview.png" width="1280" height="820"
+          alt="Four live demonstration feeds in the light-themed camera grid" loading="lazy"></a>
+        <figcaption>All four cameras, with sidebar navigation and individual controls.</figcaption>
+      </figure>
+      <figure>
+        <a href="screenshots/focused.png"><img src="screenshots/focused.png" width="1280" height="820"
+          alt="A focused demonstration camera in dark appearance" loading="lazy"></a>
+        <figcaption>Focus on one camera in dark appearance.</figcaption>
+      </figure>
+      <figure>
+        <a href="screenshots/preferences.png"><img src="screenshots/preferences.png" width="1280" height="820"
+          alt="Preferences for video quality, appearance, and camera names" loading="lazy"></a>
+        <figcaption>Choose video quality, change appearance, and name your cameras.</figcaption>
+      </figure>
+    </div>
+  </section>
   <footer>
     <a href="https://github.com/sh7vansh/cctv-viewer">Source and documentation</a> ·
     <a href="cctv-viewer.flatpakrepo" download>Repository file</a> ·
